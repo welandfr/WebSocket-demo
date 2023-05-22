@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket</title>
-
+    <title>WebSocket Demo</title>
 
 </head>
 
+<!-- Works with ws-node in this repo -->
+    
 <body>
-    <!-- Funkar med ws-node -->
     <input id="in" type="text" placeholder="Write to convert to upper case">
     <p id="out">...</p>
     <p id="err" style="color: red;"></p>
@@ -23,12 +22,12 @@
         // Create a WebSocket connection
         const socket = new WebSocket(`ws://localhost:5000?token=${WS_TOKEN}`);
 
-        // Connection established event
+        // Connection established 
         socket.onopen = function (event) {
             console.log('Connected to WebSocket server');
         };
 
-        // Message received event
+        // Message listener
         socket.onmessage = function (event) {
             console.log('Received message:', event.data);
             const data = JSON.parse(event.data);
@@ -42,7 +41,7 @@
             
         };
 
-        // Connection closed event
+        // Connection closed 
         socket.onclose = function (event) {
             console.log('Connection closed');
         };
