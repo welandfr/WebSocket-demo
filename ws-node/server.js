@@ -5,9 +5,11 @@ require('dotenv').config()
 const PORT = process.env.PORT || 5000
 const wss = new WebSocket.Server({ port: PORT });
 
+// URL example: wss://my-server?token=my-secret-token
 wss.on('connection', (ws, req) => {
     console.log('Client connected');
 
+    // Check valid token (set token in .env as TOKEN=my-secret-token)
     const urlParams = new URLSearchParams(req.url.slice(1));
     if (urlParams.get('token') !== process.env.TOKEN) {
         console.log('Invalid token: ' + urlParams.get('token'));
